@@ -1,0 +1,18 @@
+{
+  "sku": "p1000",
+  "asin": "p1000",
+  "name": "Product 1",
+  "slug": "product-1",
+  "shortDescription": "<ul><li></li></ul>",
+  "longDescription": "",
+  "vendor": "Platinumconnector",
+  "brand": "Platinumconnector",
+  "categories": [{}],
+  "features": [{}],
+  "stock": [{}],
+  "price": [{}],
+  "variations": [{}],
+  "discountAvaiable": [{}],
+  "discounts": [{}],
+  "stores": [{}]
+}

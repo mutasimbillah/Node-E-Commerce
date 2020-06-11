@@ -1,6 +1,7 @@
 const product = require("../models/product");
+const asyncHandler = require("../middleware/async");
 
-exports.getProducts = async (req, res, next) => {
+exports.getProducts = asyncHandler(async (req, res, next) => {
   //console.log(req.query);
   let query;
   let queryString = JSON.stringify(req.query);
@@ -14,13 +15,10 @@ exports.getProducts = async (req, res, next) => {
   query = product.find(queryString);
   const data = await query;
   res.status(200).json({ success: true, Data: data });
-};
-exports.createProduct = async (req, res, next) => {
+});
+
+exports.createProduct = asyncHandler(async (req, res, next) => {
   //console.log(req.body);
-  try {
-    const data = await product.create(req.body);
-    res.status(201).json({ success: true, msg: "Product Created", data: data });
-  } catch (err) {
-    console.log(err);
-  }
-};
+  const data = await product.create(req.body);
+  res.status(201).json({ success: true, msg: "Product Created", data: data });
+});
