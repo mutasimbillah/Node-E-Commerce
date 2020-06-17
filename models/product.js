@@ -1,23 +1,56 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
-
-const strnumpair = new mongoose.Schema({
-  name: {
+const discount = new mongoose.Schema({
+  domain: {
     type: String,
     required: true,
   },
-  number: {
+  condition_amount: {
+    type: Number,
+    required: true,
+  },
+  discount: {
     type: Number,
     required: true,
   },
 });
-const strstrpair = new mongoose.Schema({
+const categories = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  str: {
+  parent: {
     type: String,
+    required: true,
+  },
+});
+const features = new mongoose.Schema({
+  feature_name: {
+    type: String,
+    required: true,
+  },
+  feature: {
+    type: String,
+    required: true,
+  },
+});
+const prices = new mongoose.Schema({
+  domain: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+});
+const stocks = new mongoose.Schema({
+  domain: {
+    type: String,
+    required: true,
+  },
+  stock_amount: {
+    type: Number,
     required: true,
   },
 });
@@ -37,6 +70,10 @@ const productSchema = new mongoose.Schema({
     maxlength: [50, "Name Can not be more than 50 char"],
   },
   slug: String,
+  photo: {
+    type: String,
+    default: "no-photo.jpg",
+  },
   shortDescription: {
     type: String,
     maxlength: [100, "shortDescription Can not be more than 50 char"],
@@ -51,11 +88,11 @@ const productSchema = new mongoose.Schema({
   vendor: {
     type: String,
   },
-  categories: [strstrpair],
-  features: [strstrpair],
-  stock: [strnumpair],
-  price: [strnumpair],
-  variations: [strnumpair],
+  categories: [categories],
+  features: [features],
+  stocks: [stocks],
+  prices: [prices],
+  discounts: [discount],
 });
 productSchema.pre("save", function () {
   this.slug = slugify(this.name, { lower: true });

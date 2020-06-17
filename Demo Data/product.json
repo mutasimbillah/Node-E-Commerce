@@ -2,17 +2,39 @@
   "sku": "p1000",
   "asin": "p1000",
   "name": "Product 1",
-  "slug": "product-1",
   "shortDescription": "<ul><li></li></ul>",
-  "longDescription": "",
+  "longDescription": "Long Description",
   "vendor": "Platinumconnector",
   "brand": "Platinumconnector",
-  "categories": [{}],
-  "features": [{}],
-  "stock": [{}],
-  "price": [{}],
-  "variations": [{}],
-  "discountAvaiable": [{}],
-  "discounts": [{}],
-  "stores": [{}]
+  "categories": [
+    {
+      "name": "Connector",
+      "parent": "Connector"
+    }
+  ],
+  "features": [
+    {
+      "feature_name": "Feature name",
+      "feature": "Feature value"
+    }
+  ],
+  "stocks": [
+    {
+      "domain": "US",
+      "stock_amount": 15
+    }
+  ],
+  "prices": [
+    {
+      "domain": "US",
+      "price": 25
+    }
+  ],
+  "discounts": [
+    {
+      "domain": "US",
+      "condition_amount": 200,
+      "discount": 10
+    }
+  ]
 }
