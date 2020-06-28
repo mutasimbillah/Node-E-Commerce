@@ -1,68 +1,11 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
-const discount = new mongoose.Schema({
-  domain: {
-    type: String,
-    required: true,
-  },
-  condition_amount: {
-    type: Number,
-    required: true,
-  },
-  discount: {
-    type: Number,
-    required: true,
-  },
-});
-const categories = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  parent: {
-    type: String,
-    required: true,
-  },
-});
-const features = new mongoose.Schema({
-  feature_name: {
-    type: String,
-    required: true,
-  },
-  feature: {
-    type: String,
-    required: true,
-  },
-});
-const prices = new mongoose.Schema({
-  domain: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-});
-const stocks = new mongoose.Schema({
-  domain: {
-    type: String,
-    required: true,
-  },
-  stock_amount: {
-    type: Number,
-    required: true,
-  },
-});
 const productSchema = new mongoose.Schema({
   sku: {
     type: String,
     unique: true,
     required: [true, "Please add a product unique SKU"],
     maxlength: [20, "Name Can not be more than 50 char"],
-  },
-  asin: {
-    type: String,
   },
   name: {
     type: String,
@@ -74,25 +17,41 @@ const productSchema = new mongoose.Schema({
     type: String,
     default: "no-photo.jpg",
   },
-  shortDescription: {
+  description: {
     type: String,
-    maxlength: [100, "shortDescription Can not be more than 50 char"],
+    maxlength: [300, "Description Can not be more than 300 char"],
   },
-  longDescription: {
-    type: String,
-    maxlength: [100, "shortDescription Can not be more than 50 char"],
+  categories: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+    required: [true, "Please add a product Category"],
   },
-  brand: {
-    type: String,
-  },
-  vendor: {
-    type: String,
-  },
-  categories: [categories],
-  features: [features],
-  stocks: [stocks],
-  prices: [prices],
-  discounts: [discount],
+  stock: [
+    {
+      store: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Store",
+        required: [true, "Please add All Store in the Stock"],
+      },
+      amount: {
+        type: Number,
+        require: [true, "Please add Stock Amount"],
+      },
+    },
+  ],
+  prices: [
+    {
+      store: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Store",
+        required: [true, "Please add All Store in the Stock"],
+      },
+      price: {
+        type: Number,
+        require: [true, "Please add Product Price"],
+      },
+    },
+  ],
 });
 productSchema.pre("save", function () {
   this.slug = slugify(this.name, { lower: true });

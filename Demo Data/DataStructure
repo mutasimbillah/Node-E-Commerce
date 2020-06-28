@@ -1,0 +1,23 @@
+//Store
+#Store Name
+#Country Code
+#Currency Name
+#Currency Sambles
+
+//Categories
+#Category Name:
+#Parent Category:
+
+//Vendor
+#Vendor Name
+#Vendor Details 
+
+//Product 
+#SKU
+#Name
+#Slug
+#Description
+#Vendor
+#Categories
+#Stock
+#Price 

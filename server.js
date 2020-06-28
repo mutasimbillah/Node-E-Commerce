@@ -12,7 +12,8 @@ const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const cors = require("cors");
 //
-
+//Middleware
+const formidableMiddleware = require("express-formidable");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 
@@ -22,8 +23,14 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 //Route Files
 const productRouts = require("./routes/productRouts");
+const storeRouters = require("./routes/storeRouts");
+const categoryRouters = require("./routes/categoryRouts");
+const AdminBrorouter = require("./routes/adminBroRouts");
 
+// express server definition
 const app = express();
+app.use(formidableMiddleware());
+
 //Body parser
 app.use(express.json());
 
@@ -60,7 +67,11 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 //Mount Routers
+
 app.use("/api/v1/product", productRouts);
+app.use("/api/v1/store", storeRouters);
+app.use("/api/v1/category", categoryRouters);
+app.use("/api/v1/admin", AdminBrorouter);
 
 app.use(errorHandler);
 

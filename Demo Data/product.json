@@ -1,4 +1,26 @@
 {
+  "sku": "P1001",
+  "name":"Rj45 CAT6 Connectors",
+  "description":"This is the Product Description",
+  "categories": "5ef8b521e27f650020841bc8",
+  "stock":[
+       {
+        "store":"5ef8a227e12aac2c88a45345",
+        "amount": 20
+       }
+  ],
+  "prices":[
+    {
+      "store":"5ef8a227e12aac2c88a45345",
+      "price": 9.99
+     }
+  ]
+}
+
+
+
+
+{
   "sku": "p1000",
   "asin": "p1000",
   "name": "Product 1",
